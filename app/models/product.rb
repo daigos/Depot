@@ -10,6 +10,12 @@ class Product < ActiveRecord::Base
   # タイトルはユニーク
   validates :title, uniqueness: true
 
+  # タイトルは10文字以上
+  validates :title, length: {
+    minimum: 10,
+    too_short: 'は10文字以上入力してください'
+  }
+
   # image_urlはgif/jpg/png
   validates :image_url, allow_blank: true, format: {
     with: %r{\.(gif|jpg|png)$}i,
